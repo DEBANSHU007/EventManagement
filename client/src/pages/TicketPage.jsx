@@ -108,7 +108,7 @@ export default function TicketPage() {
                     Email: <span className="font-extrabold text-primarydark">{ticket.ticketDetails.email}</span>
                   </div>
                   <div>
-                    Ticket ID:<br /><span className="font-extrabold text-primarydark">{ticket.ticketDetails._id}</span>
+                    <br /><span className="font-extrabold text-primarydark">{ticket.ticketDetails._id}</span>
                   </div>
                 </div>
               </div>

@@ -1,7 +1,9 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState, createContext } from 'react'
 import { Link, Navigate } from 'react-router-dom'
 import axios from 'axios'
-import { UserContext } from '../UserContext'
+import { UserContext } from '../UserContext';
+
+//const UserContext = createContext();
 
 
 export default function LoginPage() {
@@ -11,6 +13,8 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const {setUser} = useContext(UserContext);
+  //const [flag, setFlag] = useState(false);
+ 
 
 
   //! Fetch users from the server --------------------------------------------------------------
@@ -24,14 +28,15 @@ export default function LoginPage() {
   }, []);
 
 
-  async function loginUser(ev){
+    async function loginUser(ev){
       ev.preventDefault();
-
+       
       try{
         const {data} = await axios.post('/login', {email, password})
         setUser(data);
+        console.log("This is my data" ,data)
         alert('Login success');
-
+        //flag=1;
         if (rememberMe) {
           // If the user checked, store their email in localStorage.
           localStorage.setItem('rememberedEmail', email);
@@ -46,7 +51,7 @@ export default function LoginPage() {
         alert('Login failed');
       }
   }
-
+   
   if(redirect){
     return <Navigate to={'/'}/>
   }
@@ -152,3 +157,5 @@ export default function LoginPage() {
   </div>
   )
 }
+
+//export default {LoginPage,flag};
